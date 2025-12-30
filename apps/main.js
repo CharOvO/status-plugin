@@ -1,3 +1,7 @@
+import * as cpu from '../model/cpu.js'
+import * as system from '../model/system.js'
+
+
 export class skr_status extends plugin{
     constructor() {
         super({
@@ -26,20 +30,33 @@ export class skr_status extends plugin{
     }
 
     async status(e) {
-        e.reply("当前状态良好!", true, { at: true });
+        const cpuInfo = cpu.getCpuInfo();
+        const cpuLoad = cpu.getCpuLoad();
+        const systemInfo = system.getSystemIofo();
+        e.reply([
+            `💻 CPU信息：`,
+            `  型号：${cpuInfo.name}`,
+            `  核心：${cpuInfo.core}核`,
+            `  架构：${cpuInfo.arch}`,
+            `📊 CPU负载：`,
+            `  当前负载：${cpuLoad.load}`,
+            `  频率：${cpuLoad.speed} GHz`,
+            `🖥️ 系统信息：`,
+            `  类型：${systemInfo.type}`,
+            `  版本：${systemInfo.release}`,
+            `  运行时间：${systemInfo.upTime}`  // 建议用格式化后的时间
+        ].join('\n'), false, { at: true });
     }
 
     async echo(e) {
         e.reply("请输入要复读内容",true,{at: true});
-        this.setContext("test");
-        console.log("正在等待用户输入复读内容...");
-    
+        await this.setContext("test");
+        logger.info("等待用户输入中...");
     }
 
     async test(e) {
         this.finish('test');
         e.reply(this.e.message,false,{at: true});
-
     }
 
 
