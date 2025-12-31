@@ -18,9 +18,9 @@ export async function getCpuInfo() {
         cpu.cores = `${info.cpu.cores}核`
         cpu.load = `${info.currentLoad.currentLoad.toFixed(2)}%`
         cpu.speed = `${info.cpu.speed}GHz`
-        if (info.cpuTemperature.main == null) {
-            logger.error("获取cpu温度失败!",error);
-            cpu.temp = `0℃`;
+        if (info.cpuTemperature.main === null) {
+            logger.error("获取cpu温度失败!");
+            cpu.temp = '0℃';
         } else {
             cpu.temp = `${info.cpuTemperature.main}℃`;
         }
@@ -29,9 +29,10 @@ export async function getCpuInfo() {
         } catch (error) {
             cpu.arch = '未知';
         }
-        return cpu;   
+        return cpu;  
+        
     } catch (error) {
-        logger.error("获取cpu信息失败!",error);
+        logger.error("获取cpu信息失败!");
 
         return {
             name: '未知',

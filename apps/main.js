@@ -30,16 +30,17 @@ export class skr_status extends plugin{
     }
 
     async status(e) {
-        const cpuInfo = cpu.getCpuInfo();
+        const cpuInfo = await cpu.getCpuInfo();
         const systemInfo = system.getSystemIofo();
         e.reply([
             `💻 CPU信息：`,
             `  型号：${cpuInfo.name}`,
-            `  核心：${cpuInfo.core}`,
+            `  核心：${cpuInfo.cores}`,
             `  架构：${cpuInfo.arch}`,
             `📊 CPU负载：`,
             `  当前负载：${cpuInfo.load}`,
             `  频率：${cpuInfo.speed}`,
+            `  温度: ${cpuInfo.temp}`,
             `🖥️ 系统信息：`,
             `  类型：${systemInfo.type}`,
             `  版本：${systemInfo.release}`,
