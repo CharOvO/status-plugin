@@ -1,0 +1,12 @@
+{
+    "name": "skr-status-plugin",
+    "version": "1.0.1",
+    "description": "适用于Yunzai-Bot V3的服务器状态插件",
+    "main": "index.js",
+    "type": "module",
+    "author": "JiuYann",
+    "license": "MIT",
+    "dependencies": {
+        "systeminformation": "^5.28.7"
+    }
+}
