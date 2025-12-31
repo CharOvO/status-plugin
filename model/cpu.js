@@ -1,28 +1,45 @@
-import os from 'node:os';
+import os from 'os';
+import si from 'systeminformation'
+
 
 /**
  * 获取cpu型号
- * @returns {Object}
+ * @returns {Promise<Object>} // 包含
  */
-
-export function getCpuInfo() {
+export async function getCpuInfo() {
     try {
-        const cpuInfo = os.cpus();
-        return {
-            name: cpuInfo[0].model.trim().slice(0,21).concat('...'), //cpu型号
-            arch: os.arch(), //cpu架构
-            core: cpuInfo.length, //核心数
-            load: `${(os.loadavg()[0]/cpuInfo.length*100).toFixed(2)}%`,
-            speed: (cpuInfo[0].speed / 1000).toFixed(2), //频率
+        let cpu = {}
+        const info = await si.get({
+            cpu: 'brand,cores,speed',
+            currentLoad: 'currentLoad',
+            cpuTemperature: 'main',
+        });
+        cpu.name = `${info.cpu.brand}`
+        cpu.cores = `${info.cpu.cores}核`
+        cpu.load = `${info.currentLoad.currentLoad.toFixed(2)}%`
+        cpu.speed = `${info.cpu.speed}GHz`
+        if (info.cpuTemperature.main == null) {
+            logger.error("获取cpu温度失败!",error);
+            cpu.temp = `0℃`;
+        } else {
+            cpu.temp = `${info.cpuTemperature.main}℃`;
         }
-    } catch(error){
-        logger.error("获取cpu信息失败!");
+        try {
+            cpu.arch = `${os.arch()}`;
+        } catch (error) {
+            cpu.arch = '未知';
+        }
+        return cpu;   
+    } catch (error) {
+        logger.error("获取cpu信息失败!",error);
+
         return {
-        name: '未知',
-        core: '0',
-        arch: '未知',
-        load: '0%',
-        speed: '0',
-        }       
+            name: '未知',
+            cores: '0核',
+            load: '0%',
+            speed: '0GHz',
+            temp: '0℃',
+            arch: '未知'
+        };
     }
 } 

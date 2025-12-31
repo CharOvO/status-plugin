@@ -35,15 +35,15 @@ export class skr_status extends plugin{
         e.reply([
             `💻 CPU信息：`,
             `  型号：${cpuInfo.name}`,
-            `  核心：${cpuInfo.core}核`,
+            `  核心：${cpuInfo.core}`,
             `  架构：${cpuInfo.arch}`,
             `📊 CPU负载：`,
             `  当前负载：${cpuInfo.load}`,
-            `  频率：${cpuInfo.speed} GHz`,
+            `  频率：${cpuInfo.speed}`,
             `🖥️ 系统信息：`,
             `  类型：${systemInfo.type}`,
             `  版本：${systemInfo.release}`,
-            `  运行时间：${systemInfo.upTime}`  // 建议用格式化后的时间
+            `  运行时间：${systemInfo.upTime}`
         ].join('\n'), false, { at: true });
     }
 
