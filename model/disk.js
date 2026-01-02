@@ -62,5 +62,3 @@ export async function getDiskInfo() {
         logger.error("获取硬盘数据失败!",error);
     }
 }
-
-console.log(await getDiskInfo());

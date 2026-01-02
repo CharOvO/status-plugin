@@ -52,16 +52,18 @@ export class skr_status extends plugin{
             `  运行时间：${systemInfo.upTime}`,
             `😞 内存占用：`,
             `  ${memoryInfo.active}/${memoryInfo.total}`,
-            `🎉 硬盘信息：`,
+            `🎉 容量概况：`,
         ];
-        rmsg.push(`  容量概况：${diskInfo.used}/${diskInfo.total}`);
-        rmsg.push(`  硬盘信息：`)
-        for (let i = 0; i < diskInfo.disk.length; i++){
-            rmsg.push(`  ${diskInfo.disk[i].name}`);
-            rmsg.push(`  ${diskInfo.disk[i].type}`);
-            rmsg.push(`  ${diskInfo.disk[i].size}`);
-            rmsg.push(`  ${diskInfo.disk[i].temperature}`);
+        rmsg.push(` ${diskInfo.used}/${diskInfo.total}`);
+        rmsg.push(`🤣 硬盘信息：`);
+        rmsg.push(`--------------`);
 
+        for (let i = 0; i < diskInfo.disk.length; i++){
+            rmsg.push(` 型号: ${diskInfo.disk[i].name}`);
+            rmsg.push(` 类型: ${diskInfo.disk[i].type}`);
+            rmsg.push(` 容量: ${diskInfo.disk[i].size}`);
+            rmsg.push(` 温度: ${diskInfo.disk[i].temperature}`);
+            rmsg.push(`--------------`);
         }
         
 
