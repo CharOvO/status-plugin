@@ -10,7 +10,7 @@
 #### 1. 克隆仓库
 
 ```
-git clone https://github.com/CharOvO/status-plugin.git
+git clone https://github.com/CharOvO/skr-status-plugin.git ./skr-status-plugin
 ```
 
 > [!NOTE]
@@ -19,7 +19,7 @@ git clone https://github.com/CharOvO/status-plugin.git
 #### 2. 安装依赖
 
 ```
-pnpm install --filter=status-plugin
+pnpm install --filter=skr-status-plugin
 ```
 
 ## 插件配置
@@ -31,17 +31,17 @@ pnpm install --filter=status-plugin
 
 安装好后，请使用 `#状态` 或 `/status` 命令触发状态面板
 
-- [ ] CPU 占用,温度
-- [ ] 内存占用
-- [ ] 网络上下行速率
-- [ ] 磁盘占用,温度
-- [ ] 系统信息
+- [x] CPU 占用,温度
+- [x] 内存占用
+- [x] 网络上下行速率
+- [x] 磁盘占用,温度
+- [x] 系统信息
 - [ ] GPU 型号
 - [ ] 插件数量
 - [ ] 适配器信息
 - [ ] 收发消息数量
 - [ ] 好友 & 群数量
-- [ ] 运行时间
+- [x] 运行时间
 - [ ] [自定义展示](https://github.com/erzaozi/neko-status-plugin?tab=readme-ov-file#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B1%95%E7%A4%BA)
 
 ## 效果图(骗你的)
