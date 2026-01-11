@@ -24,7 +24,7 @@ export class skr_status extends plugin{
             },
             {
             /** 命令正则匹配 */
-            reg: '^[/#]?(复读|echo)$',
+            reg: '^[/#]?(复读|echo)',
             /** 执行方法 */
             fnc: 'echo'
             }
@@ -77,15 +77,10 @@ export class skr_status extends plugin{
     }
 
     async echo(e) {
-        e.reply("请输入要复读内容",true,{at: true});
-        await this.setContext("test");
-        logger.info("等待用户输入中...");
-    }
-
-    async test(e) {
-        this.finish('test');
-        e.reply(this.e.message,false,{at: true});
-    }
+        const match = e.msg.match(/[/#]?(复读|echo)\s*(.+)/);
+        if (match && match[2]) {
+            e.reply(match[2], false,{ at: true });
+    }    }   
 
 
 }
