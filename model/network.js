@@ -5,7 +5,7 @@ import * as tool from './tool.js';
  * @return {Promise<Object>} // 包含 上行速率和下行速率
  */
 
-export async function getNetworkInfo() {
+export default async function getNetworkInfo() {
     try {
         let network = {}
         // 前
@@ -47,5 +47,6 @@ export async function getNetworkInfo() {
     }
     
 }
+
 
 

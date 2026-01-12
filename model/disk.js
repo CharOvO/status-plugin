@@ -17,7 +17,7 @@ function formatSizeUnit(size) {
  * @return {Promise<Object>} // 包含每块磁盘名称,容量,温度等信息的对象
  */
 
-export async function getDiskInfo() {
+export default async function getDiskInfo() {
     // return [await si.blockDevices(),await si.fsSize()];
     try {
         let disk = [];
@@ -56,9 +56,17 @@ export async function getDiskInfo() {
         return {
             disk: disk,
             total: formatSizeUnit(total),
-            used: formatSizeUnit(used)
+            used: formatSizeUnit(used),
+            usagePercent: (used / total) * 100
         }
     } catch (error) {
-        logger.error("获取硬盘数据失败!",error);
+        logger.error("获取硬盘数据失败!", error);
+        
+        return {
+            disk: '未发现硬盘',
+            total: '0GB',
+            used: '0GB',
+            usagePercent: 0
+        }
     }
 }

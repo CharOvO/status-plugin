@@ -6,7 +6,7 @@ import si from 'systeminformation'
  * @returns {Promise<Object>} 包括 内核 发行版 主机名 运行时间 的对象
  */
 
-export async function getSystemIofo() {
+export default async function getSystemIofo() {
     try {
         let system = {};
         const info = await si.get({
@@ -31,4 +31,5 @@ export async function getSystemIofo() {
         }
     }
 }
+
 

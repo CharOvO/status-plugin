@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>skr-status-plugin</title>
+    <link rel="stylesheet" href="{{pluginResources}}/template/assets/css/main.css">
+</head>
+
+
+<body>
+
+    <header class="glass-card">
+        <div>
+            <div style="font-size: 32px; font-weight: 800;">{{data.system.hostname}}</div>
+            <div style="opacity: 0.8; margin-top: 5px;">{{data.system.distro}} | {{data.system.upTime}}</div>
+        </div>
+        <div style="text-align: right">
+            <div class="label">PLATFORM / ARCH</div>
+            <div style="font-size: 20px; font-weight: bold;">{{data.system.platform}} {{data.cpu.arch}}</div>
+        </div>
+    </header>
+
+    <div class="grid">
+        <div class="glass-card hero">
+            <div style="flex: 1">
+                <div class="label">CPU LOAD ({{data.cpu.cores}})</div>
+                <div class="value-big">{{data.cpu.load}}</div>
+                <div class="progress-bg">
+                    <div class="progress-fill" style="width: {{data.cpu.loadPercent}}%"></div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.7;">{{data.cpu.name}}</div>
+            </div>
+            <div style="flex: 1">
+                <div class="label">MEMORY USAGE</div>
+                <div class="value-big">{{data.memory.active}}</div>
+                <div class="progress-bg">
+                    <div class="progress-fill" style="width: {{data.memory.usagePercent}}%"></div>
+                </div>
+                <div style="font-size: 13px; opacity: 0.7;">Total Space: {{data.memory.total}}</div>
+            </div>
+        </div>
+
+        <div class="glass-card">
+            <div class="label">NETWORK TRAFFIC</div>
+            <div class="info-item"><span>Upload</span><strong>{{data.network.txSpeed}}</strong></div>
+            <div class="info-item"><span>Download</span><strong>{{data.network.rxSpeed}}</strong></div>
+            <div style="margin-top: 15px; font-size: 12px; text-align: center; opacity: 0.5;">
+                Total: ↑{{data.network.up}} / ↓{{data.network.down}}
+            </div>
+        </div>
+
+        <div class="glass-card">
+            <div class="label">PHYSICAL DISKS</div>
+            <div class="disk-list">
+                {{each data.disk.disk}}
+                <div class="info-item" style="font-size: 12px;">
+                    <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 180px;">
+                        [{{$value.type}}] {{$value.name}}
+                    </span>
+                    <strong style="color: var(--accent);">{{$value.size}}</strong>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+
+        <div class="glass-card">
+            <div class="label">TOTAL STORAGE</div>
+            <div class="value-big" style="font-size: 28px;">{{data.disk.used}} / {{data.disk.total}}</div>
+            <div class="progress-bg">
+                <div class="progress-fill" style="width: {{data.disk.usagePercent}}%"></div>
+            </div>
+            <div style="font-size: 12px; opacity: 0.6; text-align: center;">系统整体磁盘使用率</div>
+        </div>
+
+        <div class="glass-card" style="display: flex; align-items: center; justify-content: space-around;">
+            <div style="text-align: center;">
+                <div class="label">TEMP</div>
+                <div class="value-big" style="font-size: 32px; margin: 0;">{{data.cpu.temp}}</div>
+            </div>
+            <div style="text-align: center;">
+                <div class="label">SPEED</div>
+                <div class="value-big" style="font-size: 32px; margin: 0;">{{data.cpu.speed}}</div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
